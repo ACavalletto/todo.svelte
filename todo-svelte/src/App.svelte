@@ -14,14 +14,14 @@
 <main>
   <div>
     <h1>Todo List</h1><br>
-    <input  bind:value= {todoInput}>
+    <input type='text' bind:value= {todoInput}>
     <button  on:click={handleClick}>Add Todo</button>
     <ul> 
       {#each todoItems as item, index}
         <li>
           <input type='checkbox' bind:checked={item.checked}>
-            &nbsp {item.text}
-            <button on:click={() => handleRemove(index)}>X</button>
+             <span class:checked={item.checked}>{item.text}</span>
+            <button class= 'removeBtn' on:click={() => handleRemove(index)}>X</button>
         </li>
       {/each} 
     </ul> 
@@ -29,18 +29,26 @@
 </main>
 
 <style>
-  .logo {
-    height: 6em;
-    padding: 1.5em;
-    will-change: filter;
+ .checked{
+   text-decoration: line-through;
+ } 
+ input[type='text']{
+   height: 30px;
+   width: 200px;
+   margin: 20px;
+ }
+ li{
+  text-align: left;
+   height: 42px;
   }
-  .logo:hover {
-    filter: drop-shadow(0 0 2em #646cffaa);
-  }
-  .logo.svelte:hover {
-    filter: drop-shadow(0 0 2em #ff3e00aa);
-  }
-  .read-the-docs {
-    color: #888;
-  }
+ .removeBtn{
+   float: right;
+ }
+ span{
+   margin-left: 25px;
+   font-size: 24px;
+ }
+ input[type='checkbox']{
+   transform: scale(2.5);
+ }
 </style>
