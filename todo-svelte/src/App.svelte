@@ -5,6 +5,10 @@
     todoItems= [...todoItems, {text: todoInput, checked: false}]
     todoInput = ''
   }
+  function handleRemove(index){
+   todoItems.splice(index, 1)
+    todoItems = todoItems
+  }
 </script>
 
 <main>
@@ -13,8 +17,12 @@
     <input  bind:value= {todoInput}>
     <button  on:click={handleClick}>Add Todo</button>
     <ul> 
-      {#each todoItems as item}
-        <li><input type='checkbox'> &nbsp {item.text}</li>
+      {#each todoItems as item, index}
+        <li>
+          <input type='checkbox' bind:checked={item.checked}>
+            &nbsp {item.text}
+            <button on:click={() => handleRemove(index)}>X</button>
+        </li>
       {/each} 
     </ul> 
   </div>
