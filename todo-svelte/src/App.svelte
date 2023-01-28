@@ -1,8 +1,9 @@
 <script>
   let todoItems = []
   let todoInput = ''
-  function handleClick(todoInput){
-    todoItems.push(todoInput)
+  function handleClick(){
+    todoItems= [...todoItems, {text: todoInput, checked: false}]
+    todoInput = ''
   }
 </script>
 
@@ -13,7 +14,7 @@
     <button  on:click={handleClick}>Add Todo</button>
     <ul> 
       {#each todoItems as item}
-        <li><input type='checkbox'> &nbsp {item}</li>
+        <li><input type='checkbox'> &nbsp {item.text}</li>
       {/each} 
     </ul> 
   </div>
